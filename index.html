@@ -8,5 +8,205 @@
     <script src="src/js/index.ts" defer></script>
     <link rel="stylesheet" href="src/scss/index.scss" />
   </head>
-  <body></body>
+  <body class="page">
+    <nav class="menu page__menu">
+      <ul class="menu__list">
+        <li><a href="#" class="menu__element">Tasks</a></li>
+      </ul>
+    </nav>
+    <main class="main page__main">
+      <section class="card">
+        <div class="card__header">
+          <h1 class="card__title center">TODO APP</h1>
+          <a href="#" class="card__link">
+            <img
+              src="./src/img/plus-solid.svg"
+              alt="Plus icon"
+              class="card__icon card__icon--right icon--medium"
+            />
+          </a>
+        </div>
+        <div class="card__body">
+          <div class="input-group form__input-group">
+            <label for="task-category" class="input-group__label">
+              Category
+            </label>
+            <div class="input-wrapper">
+              <input
+                type="text"
+                name="task-category"
+                id="task-category"
+                class="input-wrapper__input"
+                placeholder="Search for category"
+              />
+              <img
+                src="./src/img/magnifying-glass-solid.svg"
+                alt="Magnifying glass icon"
+                class="input-wrapper__icon icon--medium"
+              />
+            </div>
+          </div>
+          <form class="tasks">
+            <p class="tasks__header">Task list</p>
+            <div class="task">
+              <div class="task__name">
+                <input
+                  class="task__checkbox"
+                  type="checkbox"
+                  name="task-1"
+                  id="task-1"
+                />
+                <label class="task__label" for="task-1">Do 15 pushups</label>
+              </div>
+              <div class="task__details">
+                <div class="task__date warning-color">2 hours left</div>
+                <!-- <div class="task__category">Workout</div> -->
+                <!-- <a href="#" class="task__edit">
+                  <img
+                    class="icon--medium"
+                    src="./src/img/pen-to-square-solid.svg"
+                    alt="Pen to square icon"
+                  />
+                </a> -->
+                <a href="#" class="task__remove">
+                  <img
+                    class="icon--medium"
+                    src="./src/img/trash-can-solid.svg"
+                    alt="Trash icon"
+                  />
+                </a>
+              </div>
+            </div>
+            <div class="task">
+              <div class="task__name">
+                <input
+                  class="task__checkbox"
+                  type="checkbox"
+                  name="task-2"
+                  id="task-2"
+                />
+                <label class="task__label" for="task-2">Do 30 pushups</label>
+              </div>
+              <div class="task__details">
+                <div class="task__date">01/01/1970</div>
+                <!-- <div class="task__category">Workout</div> -->
+                <!-- <a href="#" class="task__edit">
+                  <img
+                    class="icon--medium"
+                    src="./src/img/pen-to-square-solid.svg"
+                    alt="Pen to square icon"
+                  />
+                </a> -->
+                <a href="#" class="task__remove">
+                  <img
+                    class="icon--medium"
+                    src="./src/img/trash-can-solid.svg"
+                    alt="Trash icon"
+                  />
+                </a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+      <!-- <section class="card main__card">
+        <div class="card__header">
+          <h1 class="card__title center">Create task</h1>
+          <a href="#" class="card__link">
+            <img
+              src="./src/img/chevron-left-solid.svg"
+              alt="Go back icon"
+              class="card__icon card__icon--left icon--medium"
+            />
+          </a>
+        </div>
+        <div class="card__body">
+          <form class="form">
+            <div class="input-group form__input-group">
+              <label for="task-name" class="input-group__label">
+                Task name<span class="primary-color">*</span>
+              </label>
+              <div class="input-wrapper">
+                <input
+                  type="text"
+                  name="task-name"
+                  id="task-name"
+                  class="input-wrapper__input input-wrapper__input--error"
+                  placeholder="Task name"
+                />
+                <img
+                  src="./src/img/pencil-solid.svg"
+                  alt="Pencil icon"
+                  class="input-wrapper__icon icon--medium"
+                />
+              </div>
+              <p class="input-group__error">This field is reqired</p>
+            </div>
+            <div class="input-group form__input-group">
+              <label for="task-category" class="input-group__label">
+                Category<span class="primary-color">*</span>
+              </label>
+              <div class="input-wrapper">
+                <input
+                  type="text"
+                  name="task-category"
+                  id="task-category"
+                  class="input-wrapper__input"
+                  placeholder="Search for category"
+                />
+                <img
+                  src="./src/img/magnifying-glass-solid.svg"
+                  alt="Magnifying glass icon"
+                  class="input-wrapper__icon icon--medium"
+                />
+              </div>
+              <p class="input-group__error is-hidden">This field is reqired</p>
+            </div>
+            <div class="input-group form__input-group">
+              <label for="task-date" class="input-group__label">
+                Complete task before<span class="primary-color">*</span>
+              </label>
+              <div class="input-group__2columns">
+                <div class="input-wrapper">
+                  <input
+                    type="text"
+                    name="task-date"
+                    id="task-date"
+                    class="input-wrapper__input"
+                    placeholder="01-01-1970"
+                  />
+                  <img
+                    src="./src/img/calendar-regular.svg"
+                    alt="Calendar icon"
+                    class="input-wrapper__icon icon--medium"
+                  />
+                </div>
+                <div class="input-wrapper">
+                  <input
+                    type="text"
+                    name="task-hour"
+                    id="task-hour"
+                    class="input-wrapper__input"
+                    placeholder="12:00"
+                  />
+                  <img
+                    src="./src/img/clock-regular.svg"
+                    alt="Clock icon"
+                    class="input-wrapper__icon icon--medium"
+                  />
+                </div>
+              </div>
+              <p class="input-group__error is-hidden">This field is reqired</p>
+            </div>
+            <p class="form__info">
+              <span class="primary-color">*</span> – required field
+            </p>
+            <button class="button button--w100 form__button" type="submit">
+              Add task
+            </button>
+          </form>
+        </div>
+      </section> -->
+    </main>
+  </body>
 </html>

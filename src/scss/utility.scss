@@ -1,0 +1,33 @@
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin vertical-align-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.center {
+  text-align: center;
+}
+
+.icon {
+  &--medium {
+    height: 1rem;
+    max-width: 1rem;
+  }
+}
+
+.primary-color {
+  color: $primary;
+}
+
+.warning-color {
+  color: $error;
+}
+
+.is-hidden {
+  visibility: hidden;
+}
