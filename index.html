@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo App</title>
-    <script src="src/js/index.ts" defer></script>
+    <script src="src/js/controller.ts" type="module" defer></script>
     <link rel="stylesheet" href="src/scss/index.scss" />
   </head>
   <body class="page">
@@ -27,7 +27,7 @@
           </a>
         </div>
         <div class="card__body">
-          <div class="input-group form__input-group">
+          <!-- <div class="input-group card__input-group">
             <label for="task-category" class="input-group__label">
               Category
             </label>
@@ -44,69 +44,42 @@
                 alt="Magnifying glass icon"
                 class="input-wrapper__icon icon--medium"
               />
-            </div>
+            </div> -->
           </div>
-          <form class="tasks">
+          <div class="tasks">
             <p class="tasks__header">Task list</p>
-            <div class="task">
-              <div class="task__name">
-                <input
-                  class="task__checkbox"
-                  type="checkbox"
-                  name="task-1"
-                  id="task-1"
-                />
-                <label class="task__label" for="task-1">Do 15 pushups</label>
-              </div>
-              <div class="task__details">
-                <div class="task__date warning-color">2 hours left</div>
-                <!-- <div class="task__category">Workout</div> -->
-                <!-- <a href="#" class="task__edit">
+            <ul class="task-list">
+              <li class="task task-list__task">
+                <div class="task__name">
+                  <input
+                    class="task__checkbox"
+                    type="checkbox"
+                    name="task-2"
+                    id="task-2"
+                  />
+                  <label class="task__label" for="task-2">Do 30 pushups</label>
+                </div>
+                <div class="task__details">
+                  <div class="task__date">01/01/1970</div>
+                  <div class="task__category">Workout</div>
+                  <a href="#" class="task__edit">
                   <img
                     class="icon--medium"
                     src="./src/img/pen-to-square-solid.svg"
                     alt="Pen to square icon"
                   />
-                </a> -->
-                <a href="#" class="task__remove">
-                  <img
-                    class="icon--medium"
-                    src="./src/img/trash-can-solid.svg"
-                    alt="Trash icon"
-                  />
                 </a>
-              </div>
-            </div>
-            <div class="task">
-              <div class="task__name">
-                <input
-                  class="task__checkbox"
-                  type="checkbox"
-                  name="task-2"
-                  id="task-2"
-                />
-                <label class="task__label" for="task-2">Do 30 pushups</label>
-              </div>
-              <div class="task__details">
-                <div class="task__date">01/01/1970</div>
-                <!-- <div class="task__category">Workout</div> -->
-                <!-- <a href="#" class="task__edit">
-                  <img
-                    class="icon--medium"
-                    src="./src/img/pen-to-square-solid.svg"
-                    alt="Pen to square icon"
-                  />
-                </a> -->
-                <a href="#" class="task__remove">
-                  <img
-                    class="icon--medium"
-                    src="./src/img/trash-can-solid.svg"
-                    alt="Trash icon"
-                  />
-                </a>
-              </div>
-            </div>
-          </form>
+                  <a href="#" class="task__remove">
+                    <img
+                      class="icon--medium"
+                      src="./src/img/trash-can-solid.svg"
+                      alt="Trash icon"
+                    />
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
       <!-- <section class="card main__card">
@@ -164,7 +137,7 @@
             </div>
             <div class="input-group form__input-group">
               <label for="task-date" class="input-group__label">
-                Complete task before<span class="primary-color">*</span>
+                Complete task before
               </label>
               <div class="input-group__2columns">
                 <div class="input-wrapper">

@@ -99,6 +99,15 @@ $gradient: linear-gradient(to right bottom, $primary, $secondary);
   }
 }
 
+.task-list {
+  &--placeholder-message {
+    display: flex;
+    justify-content: center;
+    font-style: italic;
+    opacity: 0.75;
+  }
+}
+
 .form {
   &__info {
     padding: 0.25rem 0;
