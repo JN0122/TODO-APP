@@ -3,36 +3,46 @@ import { getHoursToNow } from "./helper";
 
 export const state: State = {
   tasks: [],
-  completedTasks: [],
 };
 
+state.tasks = [
+  {
+    id: 1,
+    name: "Do 15 pushups",
+    completeBefore: new Date(Date.now() - 1000 * 60 * 60 * 24),
+    completed: false,
+  },
+  {
+    id: 2,
+    name: "Do homework",
+    completeBefore: new Date(Date.now() + 1000 * 60 * 60 * 2),
+    completed: false,
+  },
+  {
+    id: 3,
+    name: "Do 30 jumping jacks",
+    completeBefore: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
+    completed: true,
+  },
+  {
+    id: 4,
+    name: "Do 20 pull ups",
+    completed: false,
+  },
+];
+
 export const getTasks = function () {
-  state.tasks = [
-    {
-      id: 1,
-      name: "Do 15 pushups",
-      completeBefore: new Date(Date.now() - 1000 * 60 * 60 * 24),
-      completed: false,
-    },
-    {
-      id: 2,
-      name: "Do homework",
-      completeBefore: new Date(Date.now() + 1000 * 60 * 60 * 2),
-      completed: false,
-    },
-    {
-      id: 3,
-      name: "Do 30 jumping jacks",
-      completeBefore: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
-      completed: true,
-    },
-    {
-      id: 4,
-      name: "Do 20 pull ups",
-      completed: false,
-    },
-  ];
+  // TODO get tasks from DB
   updateHoursleft();
+};
+
+export const changeTaskStatus = function (id: number) {
+  state.tasks = state.tasks.map((task) => {
+    if (task.id === id) {
+      task.completed = !task.completed;
+    }
+    return task;
+  });
 };
 
 const updateHoursleft = function () {

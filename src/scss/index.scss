@@ -97,6 +97,9 @@ $gradient: linear-gradient(to right bottom, $primary, $secondary);
     gap: 0.5rem;
     white-space: nowrap;
   }
+  &--completed {
+    text-decoration: line-through;
+  }
 }
 
 .task-list {

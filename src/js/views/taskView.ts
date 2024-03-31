@@ -18,30 +18,53 @@ class TaskView {
     });
   }
 
-  // addHandlerDeleteTask(handler: (id: number) => void) {
-  //   this._taskListEl = document.querySelector(".task-list");
+  addHandlerDeleteTask(handler: (id: number) => void) {
+    this._parentEl?.addEventListener("click", function (e: Event) {
+      const link: HTMLElement | null = (e.target as HTMLElement).closest(
+        "a.task__remove"
+      );
+      if (!link) return;
+      const taskId: string | undefined = link.closest("li")?.dataset.id;
 
-  //   this._taskListEl?.addEventListener("click", function (e) {
-  //     const link: HTMLAnchorElement | null = (e.target as HTMLElement).closest(
-  //       "a"
-  //     );
-  //     if (!link?.classList.contains("task__remove")) return;
+      if (!taskId) throw new Error("Task element not found!");
 
-  //     const s_id: string | undefined = link.closest("li")?.dataset.id;
+      if (confirm("This operation is irreversible. Are you sure?")) {
+        handler(+taskId);
+      }
+    });
+  }
 
-  //     if (s_id === undefined) throw new Error("Task not found!");
-  //     alert("This operation is irreversible. Are you sure?");
+  _changeTaskStatus(liEl: HTMLElement) {
+    const label = liEl.querySelector(".task__label");
+    const date = liEl.querySelector(".task__date");
 
-  //     const id = Number.parseInt(s_id);
-  //     handler(id);
-  //   });
-  // }
+    date?.classList.toggle("task--completed");
+    label?.classList.toggle("task--completed");
+  }
+
+  addHandlerTaskComplete(handler: (id: number) => void) {
+    this._parentEl?.addEventListener("change", (e: Event) => {
+      const inputEl: HTMLElement | null = (e.target as HTMLElement).closest(
+        "input.task__checkbox"
+      );
+
+      if (!inputEl) return;
+
+      const liEl = inputEl.closest("li");
+      if (!liEl || !liEl.dataset.id)
+        throw new Error("Cannot find task element");
+
+      this._changeTaskStatus(liEl);
+
+      handler(+liEl.dataset.id);
+    });
+  }
 
   _generatePlaceholderMarkup() {
     return `<div class="task-list--placeholder-message">${this._message}</div>`;
   }
 
-  _generateItemMarkup(task: Task) {
+  _generateItemMarkup(task: Task): string {
     return `<li class="task task-list__task" data-id=${task.id}>
     <div class="task__name">
       <input
@@ -49,14 +72,16 @@ class TaskView {
         type="checkbox"
         name="task-${task.id}"
         id="task-${task.id}"
-        ${task.completed ? "checked" : ""}
+        ${task.completed && "checked"}
       />
-      <label class="task__label" for="task-${task.id}">${task.name}</label>
+      <label class="task__label ${
+        task.completed && "task--completed"
+      }" for="task-${task.id}">${task.name}</label>
     </div>
     <div class="task__details">
         <div class="task__date ${
           (task.late || task.hoursLeft) && "warning-color"
-        }">
+        } ${task.completed && "task--completed"}">
         ${
           task.hoursLeft
             ? `${task.hoursLeft} hours left`
@@ -89,7 +114,7 @@ class TaskView {
     return this._generatePlaceholderMarkup();
   }
 
-  _generateWraperMarkup(content: string) {
+  _generateSectionWraperMarkup(content: string) {
     return `<div class="card__header">
     <h1 class="card__title center">TODO APP</h1>
     <a href="#" class="card__link" id="addTask">
@@ -137,7 +162,7 @@ class TaskView {
   render(tasks: Task[]) {
     if (!this._parentEl) throw new Error("Parent element not found!");
 
-    this._parentEl.innerHTML = this._generateWraperMarkup(
+    this._parentEl.innerHTML = this._generateSectionWraperMarkup(
       this._generateListMarkup(tasks)
     );
   }
