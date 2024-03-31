@@ -1,22 +1,19 @@
+`use strict`;
 import * as model from "./model";
-import taskView from "./view";
+import { taskView, addTaskView } from "./views";
 
-const controlDeleteTask = function (e: Event) {
-  const link: HTMLAnchorElement | null = (e.target as HTMLElement).closest("a");
-  if (!link?.classList.contains("task__remove")) return;
+const controlTaskList = function (): void {
+  model.getTasks();
+  taskView.render(model.state.tasks);
+};
 
-  const s_id: string | undefined = link.closest("li")?.dataset.id;
-
-  if (!s_id) return;
-  alert("This operation is irreversible. Are you sure?");
-  model.deleteTask(Number.parseInt(s_id));
-  taskView.updateList(model.state.tasks);
+const controlAddTask = function (): void {
+  addTaskView.render();
 };
 
 const init = function () {
-  model.getTasks();
-  model.updateHoursleft();
-  taskView.updateList(model.state.tasks);
-  taskView.addHandlerDeleteTask(controlDeleteTask);
+  taskView.addHandlerRender(controlTaskList);
+  taskView.addHandlerAddTask(controlAddTask);
+  addTaskView.addHandlerCancel(controlTaskList);
 };
 init();

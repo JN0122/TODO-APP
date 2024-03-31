@@ -1,11 +1,7 @@
-import { Task } from "./types/task";
+import { Task, State } from "./types/";
+import { getHoursToNow } from "./helper";
 
-type state = {
-  tasks: Task[];
-  completedTasks: Task[];
-};
-
-export const state: state = {
+export const state: State = {
   tasks: [],
   completedTasks: [],
 };
@@ -36,13 +32,10 @@ export const getTasks = function () {
       completed: false,
     },
   ];
+  updateHoursleft();
 };
 
-const getHoursToNow = function (taskDate: Date): number {
-  return Math.floor((taskDate.getTime() - new Date().getTime()) / 3_600_000);
-};
-
-export const updateHoursleft = function () {
+const updateHoursleft = function () {
   state.tasks.map((task) => {
     if (!task.completeBefore) return;
 
